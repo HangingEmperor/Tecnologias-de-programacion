@@ -138,17 +138,34 @@ void main() {
 
                                     if (ok) {
                                         for (int i = 4; i < sizeof(respuestas[sizeRespuestas]); i++) {
-                                            if (toascii(respuestas[sizeRespuestas][i]) == 44) {
-                                                if (i == 4) {
+                                            if (respuestas[sizeRespuestas] == '\0') {
+                                                if (toascii(respuestas[sizeRespuestas][i]) == 44) {
+                                                    if (i == 4) {
+                                                        wasError = 2;
+                                                        pass = 1;
+                                                        break;
+                                                    }
+                                                } else if ((toascii(respuestas[sizeRespuestas][i]) >= 48 &&
+                                                            toascii(respuestas[sizeRespuestas][i]) <= 57) &&
+                                                           (toascii(respuestas[sizeRespuestas][i]) >= 48 &&
+                                                            toascii(respuestas[sizeRespuestas][i]) <= 57)) {
+                                                } else {
+                                                    if (toascii(respuestas[sizeRespuestas][i]) == 36) {
+                                                        if (toascii(respuestas[sizeRespuestas][
+                                                                            sizeof(respuestas[sizeRespuestas]) - 1]) >=
+                                                            48 &&
+                                                            toascii(respuestas[sizeRespuestas][
+                                                                            sizeof(respuestas[sizeRespuestas]) - 1]) <=
+                                                            57) {
+                                                            printf("ok");
+                                                        }
+                                                    }
                                                     wasError = 2;
                                                     pass = 1;
                                                     break;
                                                 }
-                                            } else if ((toascii(respuestas[sizeRespuestas][i]) >= 48 &&
-                                                        toascii(respuestas[sizeRespuestas][i]) <= 57) &&
-                                                       (toascii(respuestas[sizeRespuestas][i]) >= 48 &&
-                                                        toascii(respuestas[sizeRespuestas][i]) <= 57)) {
-
+                                            } else {
+                                                break;
                                             }
                                         }
                                     } else {
