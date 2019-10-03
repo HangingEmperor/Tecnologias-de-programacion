@@ -138,9 +138,12 @@ void main() {
 
                                     if (ok) {
                                         for (int i = 4; i < sizeof(respuestas[sizeRespuestas]); i++) {
-                                            if (respuestas[sizeRespuestas] == '\0') {
+                                            if (respuestas[sizeRespuestas][i] == '\0') {
+                                                printf("%i", 1);
                                                 if (toascii(respuestas[sizeRespuestas][i]) == 44) {
+                                                    printf("%i", 2);
                                                     if (i == 4) {
+                                                        printf("%i", 3);
                                                         wasError = 2;
                                                         pass = 1;
                                                         break;
@@ -149,8 +152,10 @@ void main() {
                                                             toascii(respuestas[sizeRespuestas][i]) <= 57) &&
                                                            (toascii(respuestas[sizeRespuestas][i]) >= 48 &&
                                                             toascii(respuestas[sizeRespuestas][i]) <= 57)) {
+                                                    printf("%i", 4);
                                                 } else {
                                                     if (toascii(respuestas[sizeRespuestas][i]) == 36) {
+                                                        printf("%i", 5);
                                                         if (toascii(respuestas[sizeRespuestas][
                                                                             sizeof(respuestas[sizeRespuestas]) - 1]) >=
                                                             48 &&
