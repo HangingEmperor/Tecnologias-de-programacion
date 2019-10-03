@@ -578,7 +578,7 @@ int main() {
                         printf("\n Clave renta: %i", claveRenta[primeroPos]);
                         printf("\n Clave pelicula: %i", clavePelicula[primeroPos]);
                         printf("\n Copias rentadas: %i", claveCopias[primeroPos]);
-                        printf("\n Se pago: %i \n", claveCopias[primeroPos] * 50);
+                        printf("\n Se pago: $%i pesos\n", claveCopias[primeroPos] * 50);
                     }
                     //2
                     if (rentasTotal >= 2) {
@@ -595,7 +595,7 @@ int main() {
                         printf("\n Clave renta: %i", claveRenta[segundoPos]);
                         printf("\n Clave pelicula: %i", clavePelicula[segundoPos]);
                         printf("\n Copias rentadas: %i\n", claveCopias[segundoPos]);
-                        printf("\n Se pago: %i \n", claveCopias[segundoPos] * 50);
+                        printf("\n Se pago: $%i pesos\n", claveCopias[segundoPos] * 50);
                     }
                     //3
                     if (rentasTotal >= 3) {
@@ -613,7 +613,7 @@ int main() {
                         printf("\n Clave renta: %i", claveRenta[cuartoPos]);
                         printf("\n Clave pelicula: %i", clavePelicula[cuartoPos]);
                         printf("\n Copias rentadas: %i\n", claveCopias[cuartoPos]);
-                        printf("\n Se pago: %i \n", claveCopias[terceroPos] * 50);
+                        printf("\n Se pago: $%i pesos\n", claveCopias[terceroPos] * 50);
                     }
                     //4
                     if (rentasTotal >= 4) {
@@ -632,7 +632,7 @@ int main() {
                         printf("\n Clave renta: %i", claveRenta[cuartoPos]);
                         printf("\n Clave pelicula: %i", clavePelicula[cuartoPos]);
                         printf("\n Copias rentadas: %i\n", claveCopias[cuartoPos]);
-                        printf("\n Se pago: %i \n", claveCopias[cuartoPos] * 50);
+                        printf("\n Se pago: $%i pesos\n", claveCopias[cuartoPos] * 50);
                     }
                     //5
                     if (rentasTotal >= 5) {
@@ -652,7 +652,7 @@ int main() {
                         printf("\n Clave renta: %i", claveRenta[quintoPos]);
                         printf("\n Clave pelicula: %i", clavePelicula[quintoPos]);
                         printf("\n Copias rentadas: %i\n\n", claveCopias[quintoPos]);
-                        printf("\n Se pago: %i \n", claveCopias[quintoPos] * 50);
+                        printf("\n Se pago: $%i pesos\n", claveCopias[quintoPos] * 50);
                     }
                 } else {
                     printf("\n No hay datos disponibles...\n");
