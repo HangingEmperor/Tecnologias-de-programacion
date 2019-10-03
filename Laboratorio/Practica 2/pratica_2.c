@@ -92,7 +92,8 @@ void main() {
                                 pass = 0;
                                 ok = 0;
                                 while (getchar() != '\n') {};
-                                system("clear");
+                                //system("clear");
+
                                 if (wasError == 1) {
                                     printf("No existe la posicion de esa pregunta...\n");
                                 } else if (wasError == 2) {
@@ -100,6 +101,7 @@ void main() {
                                 } else if (wasError == 3) {
                                     printf("No se ingreso el numero ID de pregunta... \n");
                                 }
+
                                 printf(" --- 100 Ingenieros Dijeron ---> Editar Banco de Palabras ---> Llenar preguntas --- \n");
                                 printf(" === Preguntas disponibles: %i === \n\n", sizePreguntas);
 
@@ -111,7 +113,7 @@ void main() {
                                 printf("\n Ingrese el numero de la pregunta que desea colocar respuestas: ");
                                 scanf("%i", &posPregunta);
 
-                                if (posPregunta >= 0 && posPregunta <= sizePreguntas) {
+                                if (posPregunta > 0 && posPregunta <= sizePreguntas) {
                                     while (getchar() != '\n') {};
                                     printf("\n\n == Se selecciono la pregunta No. %i: == \n", posPregunta);
                                     printf(" Ingresa una respuesta: ");
@@ -119,30 +121,30 @@ void main() {
 
                                     printf("%i\n", toascii(respuestas[sizeRespuestas][0]));
 
-                                    for (int i = 0; i < sizeof(respuestas[sizeRespuestas]); i++) {
-                                        if (preguntas[sizePreguntas][i] != '\0') {
-                                            if (toascii(respuestas[sizeRespuestas][0]) == 35) {
-                                                ok = 1;
-                                            } else if (ok) {
-                                                if (toascii(respuestas[sizeRespuestas][1]) >= 48 ||
-                                                    toascii(respuestas[sizeRespuestas][1]) <= 57 ||
-                                                    toascii(respuestas[sizeRespuestas][2]) >= 48 ||
-                                                    toascii(respuestas[sizeRespuestas][2]) <= 57) {
-                                                } else {
-                                                    pass = 1;
-                                                    wasError = 3;
-                                                }
+                                    if (toascii(respuestas[sizeRespuestas][0]) == 35) {
+                                        ok = 1;
+                                        if ((toascii(respuestas[sizeRespuestas][1]) >= 48 &&
+                                             toascii(respuestas[sizeRespuestas][1]) <= 57) &&
+                                            (toascii(respuestas[sizeRespuestas][2]) >= 48 &&
+                                             toascii(respuestas[sizeRespuestas][2]) <= 57)) {
+                                            if (toascii(respuestas[sizeRespuestas][3]) == 63) {
                                             } else {
-                                                pass = 1;
-                                                wasError = 2;
+                                                ok = 0;
                                             }
                                         } else {
-                                            if (i == 0) {
-                                            } else {
-                                                sizeRespuestas++;
-                                            }
-                                            break;
+                                            ok = 0;
                                         }
+                                    }
+
+                                    if (ok) {
+                                        for (int i = 4; i < sizeof(respuestas[sizeRespuestas]); i++) {
+                                            if (toascii(respuestas[sizeRespuestas][i]) == 44) {
+
+                                            }
+                                        }
+                                    } else {
+                                        wasError = 2;
+                                        pass = 1;
                                     }
                                 } else {
                                     pass = 1;
