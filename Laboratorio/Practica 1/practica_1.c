@@ -488,10 +488,11 @@ int main() {
                                                 clavePelicula[pointerRentas] = clave[i];
                                                 claveCopias[pointerRentas] = peliculasRentadas;
 
-
                                                 cantidadInventario[i] = cantidadInventario[i] - peliculasRentadas;
                                                 peliculasRentadasAcum = peliculasRentadasAcum + peliculasRentadas;
+
                                                 pointerRentas = pointerRentas + 1;
+
                                                 rentasTotal++;
                                                 rentasAcum = rentasTotal;
                                                 posLast = i;
@@ -538,19 +539,6 @@ int main() {
                         while (getchar() != '\n') {};
                         printf("\n Se ha completado el pago con exito. \n");
                         sizeRentas++;
-                        /*
-                        //scanf("%i", &claveTemporal);
-                        if (claveTemporal != 1) {
-                            peliculasRentadasAcum = 0;
-                            pointerRentas--;
-                            rentasTotal = rentasTotal - rentasAcum;
-                            cantidadInventario[posCantidad] = cantidades[posCantidad];
-                            //cantidadInventario[posCantidad] = anteriorCantidad;
-                            esRenta[posCantidad] = 1;
-                            printf("\n No se pudo completar la ultima renta... \n");
-                        } else {
-
-                        }*/
                     } else {
                         printf("\n No hay peliculas en el inventario \n");
                     }
@@ -610,9 +598,9 @@ int main() {
                             }
                         }
                         printf("\n --- 3er Lugar ---");
-                        printf("\n Clave renta: %i", claveRenta[cuartoPos]);
-                        printf("\n Clave pelicula: %i", clavePelicula[cuartoPos]);
-                        printf("\n Copias rentadas: %i\n", claveCopias[cuartoPos]);
+                        printf("\n Clave renta: %i", claveRenta[terceroPos]);
+                        printf("\n Clave pelicula: %i", clavePelicula[terceroPos]);
+                        printf("\n Copias rentadas: %i\n", claveCopias[terceroPos]);
                         printf("\n Se pago: $%i pesos\n", claveCopias[terceroPos] * 50);
                     }
                     //4
