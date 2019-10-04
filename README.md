@@ -5,8 +5,12 @@ impartida de Tecnologías de Programación por el
 profesor Navarro en la Universidad Autónoma de Baja 
 California.
 
-## Practica 1
-## Practica 2
+## Practica 1 - _BrickBuster_
+### Objetivo
+### Consideraciones
+## Practica 2 - _100 Ingenieros Dijeron_
+### Objetivo
+### Consideraciones
 ## Practica 3 - _Battleship_
 ### Objetivo
 Realizar un programa en el que se empleen funciones

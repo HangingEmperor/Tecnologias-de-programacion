@@ -6,6 +6,8 @@
 #include <ctype.h>
 #include <wchar.h>
 
+int esRespuesta(int size, wchar_t respuesta[100][48]);
+
 void main() {
     setlocale(LC_ALL, "");
     int menu, sizePreguntas = 0, sizeRespuestas = 0;
@@ -135,43 +137,9 @@ void main() {
                                             ok = 0;
                                         }
                                     }
-
                                     if (ok) {
-                                        for (int i = 4; i < sizeof(respuestas[sizeRespuestas]); i++) {
-                                            if (respuestas[sizeRespuestas][i] == '\0') {
-                                                printf("%i", 1);
-                                                if (toascii(respuestas[sizeRespuestas][i]) == 44) {
-                                                    printf("%i", 2);
-                                                    if (i == 4) {
-                                                        printf("%i", 3);
-                                                        wasError = 2;
-                                                        pass = 1;
-                                                        break;
-                                                    }
-                                                } else if ((toascii(respuestas[sizeRespuestas][i]) >= 48 &&
-                                                            toascii(respuestas[sizeRespuestas][i]) <= 57) &&
-                                                           (toascii(respuestas[sizeRespuestas][i]) >= 48 &&
-                                                            toascii(respuestas[sizeRespuestas][i]) <= 57)) {
-                                                    printf("%i", 4);
-                                                } else {
-                                                    if (toascii(respuestas[sizeRespuestas][i]) == 36) {
-                                                        printf("%i", 5);
-                                                        if (toascii(respuestas[sizeRespuestas][
-                                                                            sizeof(respuestas[sizeRespuestas]) - 1]) >=
-                                                            48 &&
-                                                            toascii(respuestas[sizeRespuestas][
-                                                                            sizeof(respuestas[sizeRespuestas]) - 1]) <=
-                                                            57) {
-                                                            printf("ok");
-                                                        }
-                                                    }
-                                                    wasError = 2;
-                                                    pass = 1;
-                                                    break;
-                                                }
-                                            } else {
-                                                break;
-                                            }
+                                        if (esRespuesta(sizeRespuestas, respuestas)) {
+
                                         }
                                     } else {
                                         wasError = 2;
@@ -218,3 +186,20 @@ void main() {
     } while (menu != 3);
 }
 
+int esRespuesta(int size, wchar_t respuesta[100][48]) {
+
+    for (int i = 4; i < sizeof(respuesta[size]); i++) {
+        if (respuesta[size][i] != '\0') {
+            if ((toascii(respuesta[size][i]) >= 48 &&
+                 toascii(respuesta[size][i]) <= 57)) {
+
+            } else {
+
+            }
+        } else {
+            break;
+        }
+    }
+
+    return 0;
+}
