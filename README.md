@@ -10,7 +10,13 @@ California.
 ### Consideraciones
 ## Practica 2 - _100 Ingenieros Dijeron_
 ### Objetivo
+El alumno deberá resolver la problemática planteada haciendo uso de los
+conocimientos adquiridos en clase acerca del manejo de cadenas de caracteres y
+caracteres anchos.
 ### Consideraciones
+El juego consiste en realizar una simulación del famoso programa “100
+mexicanos dijeron”, concurso en el que celebridades y familias mexicanas participan
+para ganar premios y dinero en efectivo
 ## Practica 3 - _Battleship_
 ### Objetivo
 Realizar un programa en el que se empleen funciones
