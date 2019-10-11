@@ -24,7 +24,7 @@ void main() {
     int pass = 0;
 
     do {
-        system("clear");
+        //system("clear");
         printf(" --- Bienvenido a: 100 Ingenieros Dijeron --- \n");
         printf("\n Que deseas hacer? \n");
         printf("\n 1 .- Editar Banco de Palabras.");
@@ -100,8 +100,6 @@ void main() {
                                     printf("No existe la posicion de esa pregunta...\n");
                                 } else if (wasError == 2) {
                                     printf("Se ingreso un caracter invalido... \n");
-                                } else if (wasError == 3) {
-                                    printf("No se ingreso el numero ID de pregunta... \n");
                                 }
 
                                 printf(" --- 100 Ingenieros Dijeron ---> Editar Banco de Palabras ---> Llenar preguntas --- \n");
@@ -121,10 +119,9 @@ void main() {
                                     printf(" Ingresa una respuesta: ");
                                     scanf("%l[^\n]", respuestas[sizeRespuestas]);
 
-                                    printf("%i\n", toascii(respuestas[sizeRespuestas][0]));
-
                                     if (toascii(respuestas[sizeRespuestas][0]) == 35) {
                                         ok = 1;
+
                                         if ((toascii(respuestas[sizeRespuestas][1]) >= 48 &&
                                              toascii(respuestas[sizeRespuestas][1]) <= 57) &&
                                             (toascii(respuestas[sizeRespuestas][2]) >= 48 &&
@@ -137,9 +134,58 @@ void main() {
                                             ok = 0;
                                         }
                                     }
-                                    if (ok) {
-                                        if (esRespuesta(sizeRespuestas, respuestas)) {
 
+                                    if (ok) {
+                                        int comas = 0;
+                                        int esPalabra = 0;
+                                        // #01¿Pulirlo,Alisar,Bruñir,Lustrar,Lijar$40
+                                        for (int i = 4; i < sizeof(respuestas[sizeRespuestas]); i++) {
+                                            if (respuestas[sizeRespuestas][i] != '\0') {
+                                                if (toascii(respuestas[sizeRespuestas][i]) >= 65 &&
+                                                    toascii(respuestas[sizeRespuestas][i] <= 122) ||
+                                                    toascii(respuestas[sizeRespuestas][i] == 241)) {
+                                                    esPalabra = 1;
+                                                } else if (esPalabra) {
+                                                    esPalabra = 0;
+                                                    if (toascii(respuestas[sizeRespuestas][i] == 44)) {
+                                                        comas++;
+                                                    } else {
+                                                        if (toascii(respuestas[sizeRespuestas][i] == 36)) {
+                                                            if ((toascii(respuestas[sizeRespuestas][i + 1]) >= 48 &&
+                                                                 toascii(respuestas[sizeRespuestas][i + 1] <= 57)) &&
+                                                                (toascii(respuestas[sizeRespuestas][i + 2]) >= 48 &&
+                                                                 toascii(respuestas[sizeRespuestas][i + 2] <= 57))) {
+                                                                if (toascii(respuestas[sizeRespuestas][i + 3]) >= 48 &&
+                                                                    toascii(respuestas[sizeRespuestas][i + 3] <= 57)) {
+                                                                    printf("Cantidad de puntuacion invalida...\n");
+                                                                    break;
+                                                                }
+                                                                printf(" --- Palabra agregada satisfactoriamente... ---\n");
+                                                                printf("Pulse ENTER para continuar... \n");
+                                                                while (getchar() != '\n') {};
+                                                                while (getchar() != '\n') {};
+                                                                break;
+                                                            } else {
+                                                                printf("Cantidad de puntuacion invalida...\n");
+                                                                break;
+                                                            }
+                                                        } else {
+                                                            printf("No se especifico la puntuacion... \n");
+                                                            break;
+                                                        }
+                                                    }
+                                                } else {
+                                                    printf("ERROR: %d  ", respuestas[sizeRespuestas][i]);
+                                                    printf("Se ingreso texto vacio... \n");
+                                                    pass = 1;
+                                                    break;
+                                                }
+                                            }
+                                        }
+
+                                        if (comas < 4) {
+                                            printf("Se debe ingresar como minimo 4 sinonimos... \n");
+                                            pass = 1;
                                         }
                                     } else {
                                         wasError = 2;
@@ -186,20 +232,3 @@ void main() {
     } while (menu != 3);
 }
 
-int esRespuesta(int size, wchar_t respuesta[100][48]) {
-
-    for (int i = 4; i < sizeof(respuesta[size]); i++) {
-        if (respuesta[size][i] != '\0') {
-            if ((toascii(respuesta[size][i]) >= 48 &&
-                 toascii(respuesta[size][i]) <= 57)) {
-
-            } else {
-
-            }
-        } else {
-            break;
-        }
-    }
-
-    return 0;
-}
