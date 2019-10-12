@@ -19,6 +19,8 @@ void main() {
     wchar_t preguntas[50][12];
     wchar_t respuestas[100][48];
     wchar_t temporal[50][12];
+    int tamPreguntas[12][12];
+
 
     int example = 0;
     int pass = 0;
@@ -160,10 +162,6 @@ void main() {
                                                                     printf("Cantidad de puntuacion invalida...\n");
                                                                     break;
                                                                 }
-                                                                printf(" --- Palabra agregada satisfactoriamente... ---\n");
-                                                                printf("Pulse ENTER para continuar... \n");
-                                                                while (getchar() != '\n') {};
-                                                                while (getchar() != '\n') {};
                                                                 break;
                                                             } else {
                                                                 printf("Cantidad de puntuacion invalida...\n");
@@ -186,6 +184,12 @@ void main() {
                                         if (comas < 4) {
                                             printf("Se debe ingresar como minimo 4 sinonimos... \n");
                                             pass = 1;
+                                        } else {
+                                            printf(" --- Palabra agregada satisfactoriamente... ---\n");
+                                            printf("Pulse ENTER para continuar... \n");
+                                            sizeRespuestas;
+                                            while (getchar() != '\n') {};
+                                            while (getchar() != '\n') {};
                                         }
                                     } else {
                                         wasError = 2;
@@ -203,6 +207,36 @@ void main() {
                         break;
                         // Eliminar oracion
                     case 3:
+                        if (sizePreguntas <= 0) {
+                            system("clear");
+                            printf(" --- 100 Ingenieros Dijeron ---> Editar Banco de Palabras ---> Eliminar preguntas --- \n");
+                            printf(" === Total de preguntas: %i === \n\n", sizePreguntas);
+
+                            for (int i = 0; i < sizePreguntas; ++i) {
+                                printf(" # Pregunta No. %i: ", (i + 1));
+                                printf("%ls \n", preguntas[i]);
+                            }
+
+                            printf("\n Ingrese el numero de la pregunta que desea eliminar (Se borrara junto con las respuestas: ");
+                            scanf("%i", &menu);
+
+                            if (menu <= sizePreguntas) {
+                                for (int i = 0; i < sizePreguntas; ++i) {
+                                    if (wcscmp(preguntas[menu - 1], preguntas[i])) {
+                                        int j = 0;
+                                        for (j = i; j < sizePreguntas + 1; j++) {
+                                            wcscpy(preguntas[j], preguntas[j + 1]);
+                                        }
+                                        sizePreguntas--;
+                                        printf("\n Se ha eliminado correctamente... \n");
+                                        system("pause 1");
+                                    }
+                                }
+                            }
+                        } else {
+                            printf("No hay preguntas que eliminar... \n");
+                            system("pause 1");
+                        }
                         break;
                     default:
                         printf("\n Caracter invalido.... \n");
@@ -232,3 +266,6 @@ void main() {
     } while (menu != 3);
 }
 
+int esRespuesta(int size, wchar_t respuesta[100][48]) {
+
+}
