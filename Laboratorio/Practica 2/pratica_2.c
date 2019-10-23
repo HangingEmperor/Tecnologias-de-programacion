@@ -21,7 +21,6 @@ void main() {
     wchar_t temporal[50][12];
     int tamPreguntas[12][12];
 
-
     int example = 0;
     int pass = 0;
 
@@ -207,7 +206,7 @@ void main() {
                         break;
                         // Eliminar oracion
                     case 3:
-                        if (sizePreguntas <= 0) {
+                        if (sizePreguntas > 0) {
                             system("clear");
                             printf(" --- 100 Ingenieros Dijeron ---> Editar Banco de Palabras ---> Eliminar preguntas --- \n");
                             printf(" === Total de preguntas: %i === \n\n", sizePreguntas);
@@ -217,6 +216,7 @@ void main() {
                                 printf("%ls \n", preguntas[i]);
                             }
 
+                            while (getchar() != '\n') {};
                             printf("\n Ingrese el numero de la pregunta que desea eliminar (Se borrara junto con las respuestas: ");
                             scanf("%i", &menu);
 
@@ -229,13 +229,13 @@ void main() {
                                         }
                                         sizePreguntas--;
                                         printf("\n Se ha eliminado correctamente... \n");
-                                        system("pause 1");
+                                        system("sleep 1");
                                     }
                                 }
                             }
                         } else {
                             printf("No hay preguntas que eliminar... \n");
-                            system("pause 1");
+                            system("sleep 1");
                         }
                         break;
                     default:
