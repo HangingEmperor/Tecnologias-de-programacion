@@ -1,10 +1,6 @@
 #include<stdio.h>
 
-int llenar(int y[100],
-
-*
-int tamano
-);
+int llenar(int y[100], int tamano);
 
 void imprimir(int y[100], int tamano);
 
