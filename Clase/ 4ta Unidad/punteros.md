@@ -33,8 +33,8 @@ El & u operador de direccion, es un operador unario que regresa la direccion de 
 int y = 5;
 int *yPtr, *x;
 ```
-k
-El enunciado:
+
+El enunciado
 ```C
 yPtr = &y;
 x = yPtr;
