@@ -37,6 +37,7 @@ int main() {
                 printf("Ingresa un entero: ");
                 variable[cantidad].tipo_en_union = INT_TYPE;
                 scanf("%i", &variable[cantidad].dato.un_int);
+                variable[0].dato.un_int;
                 cantidad++;
                 break;
             case 2:
