@@ -8,6 +8,8 @@
 
 int esRespuesta(int size, wchar_t respuesta[100][48]);
 
+void displayMenu(int menu);
+
 void main() {
     setlocale(LC_ALL, "");
     int menu, sizePreguntas = 0, sizeRespuestas = 0;
@@ -16,9 +18,7 @@ void main() {
     int posPregunta = 0;
     int ok = 0;
 
-    wchar_t preguntas[50][12];
-    wchar_t respuestas[100][48];
-    wchar_t temporal[50][12];
+    wchar_t preguntas[50][12], respuestas[100][48], temporal[50][12];
     int tamPreguntas[12][12];
 
     int example = 0;
@@ -26,22 +26,15 @@ void main() {
 
     do {
         //system("clear");
-        printf(" --- Bienvenido a: 100 Ingenieros Dijeron --- \n");
-        printf("\n Que deseas hacer? \n");
-        printf("\n 1 .- Editar Banco de Palabras.");
-        printf("\n 2 .- Jugar!");
-        printf("\n 3 .- Salir \n\n ---> Opcion: ");
+        displayMenu(0);
         scanf("%i", &menu);
-        while (getchar() != '\n') {};
+        while (getchar() != '\n') {
+        };
 
         switch (menu) {
             // Editar Banco de Palabras
             case 1:
-                system("clear");
-                printf(" --- 100 Ingenieros Dijeron ---> Editar Banco de Palabras ---");
-                printf("\n 1 .- Llenar Preguntas");
-                printf("\n 2 .- Llenar Respuestas");
-                printf("\n 3 .- Eliminar Oración \n\n ---> Opcion: ");
+                displayMenu(1);
                 scanf("%i", &menu);
 
                 switch (menu) {
@@ -49,7 +42,8 @@ void main() {
                     // Llenar preguntas
                     case 1:
                         do {
-                            while (getchar() != '\n') {};
+                            while (getchar() != '\n') {
+                            };
                             pass = 0;
                             system("clear");
                             if (wasError) {
@@ -80,7 +74,6 @@ void main() {
                                         break;
                                     }
                                 }
-
                             } else {
                                 printf("\n Ya has alcanzado el maximo de 12 preguntas. \n");
                             }
@@ -94,7 +87,8 @@ void main() {
                             do {
                                 pass = 0;
                                 ok = 0;
-                                while (getchar() != '\n') {};
+                                while (getchar() != '\n') {
+                                };
                                 //system("clear");
 
                                 if (wasError == 1) {
@@ -115,7 +109,8 @@ void main() {
                                 scanf("%i", &posPregunta);
 
                                 if (posPregunta > 0 && posPregunta <= sizePreguntas) {
-                                    while (getchar() != '\n') {};
+                                    while (getchar() != '\n') {
+                                    };
                                     printf("\n\n == Se selecciono la pregunta No. %i: == \n", posPregunta);
                                     printf(" Ingresa una respuesta: ");
                                     scanf("%l[^\n]", respuestas[sizeRespuestas]);
@@ -187,8 +182,10 @@ void main() {
                                             printf(" --- Palabra agregada satisfactoriamente... ---\n");
                                             printf("Pulse ENTER para continuar... \n");
                                             sizeRespuestas;
-                                            while (getchar() != '\n') {};
-                                            while (getchar() != '\n') {};
+                                            while (getchar() != '\n') {
+                                            };
+                                            while (getchar() != '\n') {
+                                            };
                                         }
                                     } else {
                                         wasError = 2;
@@ -216,7 +213,8 @@ void main() {
                                 printf("%ls \n", preguntas[i]);
                             }
 
-                            while (getchar() != '\n') {};
+                            while (getchar() != '\n') {
+                            };
                             printf("\n Ingrese el numero de la pregunta que desea eliminar (Se borrara junto con las respuestas: ");
                             scanf("%i", &menu);
 
@@ -267,5 +265,29 @@ void main() {
 }
 
 int esRespuesta(int size, wchar_t respuesta[100][48]) {
+}
 
+void displayMenu(int menu) {
+    switch (menu) {
+        case 0:
+            printf(" --- Bienvenido a: 100 Ingenieros Dijeron --- \n");
+            printf("\n Que deseas hacer? \n");
+            printf("\n 1 .- Editar Banco de Palabras.");
+            printf("\n 2 .- Jugar!");
+            printf("\n 3 .- Salir \n\n ---> Opcion: ");
+            break;
+        case 1:
+            system("clear");
+            printf(" --- 100 Ingenieros Dijeron ---> Editar Banco de Palabras ---");
+            printf("\n 1 .- Llenar Preguntas");
+            printf("\n 2 .- Llenar Respuestas");
+            printf("\n 3 .- Eliminar Oración \n\n ---> Opcion: ");
+            break;
+        case 2:
+            break;
+        case 3:
+            break;
+        default:
+            break;
+    }
 }
