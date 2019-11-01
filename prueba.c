@@ -12,11 +12,14 @@ int main()
     wchar_t string1[] = L"áabcdefg";
     wchar_t string2[] = L"abcdefg";
     wchar_t string3[] = L"1";
+    wchar_t string[10];
 
     result = wcscmp(string1, string2);
     resultNumber = iswdigit(string3[0]);
     result = iswalpha(string1[0]);
     result = wcslen(string2);
 
-    printf("%i", result);
+    wscanf(L"%l[^\n]", string);
+    wprintf(string);
+    //printf("%i", resultNumber);
 }
