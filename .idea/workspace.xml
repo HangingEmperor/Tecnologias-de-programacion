@@ -58,6 +58,7 @@
       <option name="presentableId" value="Default" />
       <updated>1572559174316</updated>
       <workItem from="1572559185295" duration="596000" />
+      <workItem from="1572583435067" duration="142000" />
     </task>
     <task id="LOCAL-00001" summary="Mas informacion y practicas 4 y 5 agregadas.">
       <created>1572559321704</created>
@@ -73,7 +74,14 @@
       <option name="project" value="LOCAL" />
       <updated>1572559776585</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Mas informacion y practicas 4 y 5 agregadas.">
+      <created>1572583517159</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1572583517159</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -81,7 +89,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

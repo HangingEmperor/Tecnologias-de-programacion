@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #define TRIANGULO_TYPE 1
 #define CUADRADO_TYPE 2
@@ -61,6 +62,10 @@ int main() {
                 printf("4.- Salir\n");
                 scanf("%i", &op);
 
+                int base;
+                int altura;
+                float area;
+
                 switch (op) {
                     case 1:
                         dibujar[size].seleccionado = 0;
@@ -77,8 +82,19 @@ int main() {
                         scanf("%i", dibujar[size].dibujo.triangulo.p3.x);
                         printf("Coordenada P3 Y: ");
                         scanf("%i", dibujar[size].dibujo.triangulo.p3.y);
-                        dibujar[size].area;
 
+                        if (dibujar[size].dibujo.triangulo.p1.x >= 0) {
+                            base = dibujar[size].dibujo.triangulo.p3.x - dibujar[size].dibujo.triangulo.p1.x;
+                        } else {
+                            base = abs(dibujar[size].dibujo.triangulo.p1.x) + dibujar[size].dibujo.triangulo.p3.x;
+                        }
+                        if (dibujar[size].dibujo.triangulo.p1.y >= 0) {
+                            altura = dibujar[size].dibujo.triangulo.p2.y - dibujar[size].dibujo.triangulo.p1.y;
+                        } else {
+                            altura = abs(dibujar[size].dibujo.triangulo.p1.y) + dibujar[size].dibujo.triangulo.p3.y;
+                        }
+                        area = (base * altura) / 2;
+                        dibujar[size].area = area;
                         break;
                     case 2:
                         break;
@@ -99,13 +115,16 @@ int main() {
                     scanf("%i", &op);
                     switch (op) {
                         case 1:
-
+                            dibujar[size].color = "Rojo";
                             break;
                         case 2:
+                            dibujar[size].color = "Azul";
                             break;
                         case 3:
+                            dibujar[size].color = "Amarillo";
                             break;
                         case 4:
+                            dibujar[size].color = "Verde";
                             break;
                     }
                 }

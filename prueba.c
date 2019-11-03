@@ -2,6 +2,8 @@
 #include <wchar.h>
 #include <wctype.h>
 #include <locale.h>
+#include <string.h>
+#include <ctype.h>
 
 int main()
 {
@@ -11,15 +13,24 @@ int main()
 
     wchar_t string1[] = L"áabcdefg";
     wchar_t string2[] = L"abcdefg";
-    wchar_t string3[] = L"1";
+    wchar_t string3[] = L"23023023";
+    wchar_t string4[] = L"59";
+    wchar_t string5[] = L"1";
+    wchar_t s[2];
     wchar_t string[10];
 
-    result = wcscmp(string1, string2);
-    resultNumber = iswdigit(string3[0]);
-    result = iswalpha(string1[0]);
-    result = wcslen(string2);
+    s[0] = string4[0];
+    s[1] = string5[0];
+    s[2] = string3[0];
 
-    wscanf(L"%l[^\n]", string);
-    wprintf(string);
-    //printf("%i", resultNumber);
+    int x;
+
+    x = iswdigit(string5[10]);
+    printf("%i", x);
+
+    //wprintf(s);
+
+    // wscanf(L"%l[^\n]", string);
+    // wprintf(string);
+    // printf("%i", resultNumber);
 }

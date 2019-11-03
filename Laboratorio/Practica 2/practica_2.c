@@ -216,43 +216,51 @@ void main()
 
 int esRespuesta(int size, wchar_t respuesta[100][48])
 {
+    wchar_t aux[50][20];
+    wchar_t valor[50][20];
     int resultado;
     int comas = 0;
     int esPalabra = 0;
+    int sizeAux = 0;
 
     if (toascii(respuesta[size][0]) == 35 &&
         (iswdigit(respuesta[size][1]) != 0 && iswdigit(respuesta[size][2]) != 0) &&
         toascii(respuesta[size][3]) == 168)
     {
-        for (int i = 0; i < wcslen(respuesta[size]); i++)
+        for (int i = 4; i < wcslen(respuesta[size]); i++)
         {
-            if (iswalpha(respuesta[size]) != 0)
+            if (iswalpha(respuesta[size][i]) != 0)
             {
-                
+                wcscpy(aux[sizeAux], respuesta[size]);
+                sizeAux++;
             } else {
                 if (toascii(respuesta[size][i]) == 44)
                 {
                     comas++;
                 } else {
                     if (toascii(respuesta[size][i]) == 36) {
-
-                    } else {
                         if (iswdigit(respuesta[size][i]) != 0 &&
                             iswdigit(respuesta[size][i + 1])) {
+                            wcscpy(valor, wcscat(respuesta[size][i], respuesta[size][i + 1]));
                             resultado = 1;
                             i = wcslen(respuesta[size]);
                             break;
                         } else {
-                            resultado = 1;
+                            resultado = 0;
                         }
+                    } else {
+                        resultado = 0;
                     }
                 }
             }
-
         }
-
     } else {
         resultado = 0;
+    }
+    if (comas >= 4) {
+        printf("Exito");
+    } else {
+        printf("Fracaso");
     }
 }
 
