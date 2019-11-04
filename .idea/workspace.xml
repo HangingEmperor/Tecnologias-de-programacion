@@ -59,6 +59,7 @@
       <updated>1572559174316</updated>
       <workItem from="1572559185295" duration="596000" />
       <workItem from="1572583435067" duration="142000" />
+      <workItem from="1572809696631" duration="214000" />
     </task>
     <task id="LOCAL-00001" summary="Mas informacion y practicas 4 y 5 agregadas.">
       <created>1572559321704</created>
@@ -81,7 +82,14 @@
       <option name="project" value="LOCAL" />
       <updated>1572583517159</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Avances en la practica 2 y 5.">
+      <created>1572809803098</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1572809803114</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -100,7 +108,8 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Mas informacion y practicas 4 y 5 agregadas." />
-    <option name="LAST_COMMIT_MESSAGE" value="Mas informacion y practicas 4 y 5 agregadas." />
+    <MESSAGE value="Avances en la practica 2 y 5." />
+    <option name="LAST_COMMIT_MESSAGE" value="Avances en la practica 2 y 5." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />

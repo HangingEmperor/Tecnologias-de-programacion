@@ -3,8 +3,8 @@
 #include <wchar.h>
 #include <wctype.h>
 
-int esRespuesta(int size, wchar_t respuesta[100][48]);
-
+int esRespuesta(int size, wchar_t respuesta[100][48], wchar_t id[1][48], wchar_t palabras[50][12], int palabraPoint,
+                int letraPoint, int comas);
 void displayMenu(int menu);
 
 void main()
@@ -16,7 +16,20 @@ void main()
     int posPregunta = 0;
     int ok = 0;
 
-    wchar_t preguntas[50][12], respuestas[100][48], temporal[50][12];
+    wchar_t preguntas[50][12];
+    wchar_t respuesta[100][48];
+    wchar_t temporal[50][12];
+    wchar_t valor[100][20];
+    wchar_t id[1][48];
+
+    int resultado;
+    int comas = 0;
+    int size = 0;
+
+    wchar_t palabras[20][20];
+    int palabraPoint = 0;
+    int letraPoint = 0;
+
     int tamPreguntas[12][12];
 
     int example = 0;
@@ -214,7 +227,8 @@ void main()
     } while (menu != 3);
 }
 
-int esRespuesta(int size, wchar_t respuesta[100][48])
+int esRespuesta(int size, wchar_t respuesta[100][48], wchar_t id[1][48], wchar_t palabras[50][12], int palabraPoint,
+                int letraPoint, int comas)
 {
     wchar_t aux[50][20];
     wchar_t valor[50][20];
@@ -225,23 +239,34 @@ int esRespuesta(int size, wchar_t respuesta[100][48])
 
     if (toascii(respuesta[size][0]) == 35 &&
         (iswdigit(respuesta[size][1]) != 0 && iswdigit(respuesta[size][2]) != 0) &&
-        toascii(respuesta[size][3]) == 168)
+        toascii(respuesta[size][3]) == 40)
     {
+        id[size][0] = respuesta[size][1];
+        id[size][1] = respuesta[size][2];
+
         for (int i = 4; i < wcslen(respuesta[size]); i++)
         {
-            if (iswalpha(respuesta[size][i]) != 0)
+            if (iswalpha(respuesta[size][i]) != 0 || toascii(respuesta[size][i]) == 113 ||
+                toascii(respuesta[size][i]) == 81 || toascii(respuesta[size][i]) == 97 ||
+                toascii(respuesta[size][i]) == 105 || toascii(respuesta[size][i]) == 109 ||
+                toascii(respuesta[size][i]) == 115 || toascii(respuesta[size][i]) == 122 ||
+                toascii(respuesta[size][i]) == 34 || toascii(respuesta[size][i]) == 32)
             {
-                wcscpy(aux[sizeAux], respuesta[size]);
-                sizeAux++;
+                palabras[palabraPoint][letraPoint] = respuesta[size][i];
+                letraPoint++;
             } else {
                 if (toascii(respuesta[size][i]) == 44)
                 {
                     comas++;
+                    palabraPoint++;
+                    letraPoint = 0;
                 } else {
                     if (toascii(respuesta[size][i]) == 36) {
-                        if (iswdigit(respuesta[size][i]) != 0 &&
-                            iswdigit(respuesta[size][i + 1])) {
-                            wcscpy(valor, wcscat(respuesta[size][i], respuesta[size][i + 1]));
+                        if (iswdigit(respuesta[size][i + 1]) != 0) {
+                            if ((i + 3) == wcslen(respuesta[size]) && iswdigit(respuesta[size][i + 2]) != 0) {
+                                valor[0][1] = respuesta[size][i + 2];
+                            }
+                            valor[0][0] = respuesta[size][i + 1];
                             resultado = 1;
                             i = wcslen(respuesta[size]);
                             break;
@@ -257,11 +282,22 @@ int esRespuesta(int size, wchar_t respuesta[100][48])
     } else {
         resultado = 0;
     }
-    if (comas >= 4) {
-        printf("Exito");
+    if (comas >= 4 && resultado) {
+        printf("Exito\n");
     } else {
-        printf("Fracaso");
+        printf("Fracaso\n");
     }
+
+    printf("id: ");
+    wprintf(id[0]);
+    printf("\n");
+    for (int i = 0; i < 5; i++) {
+        printf("Palabra: ");
+        wprintf(palabras[i]);
+        printf("\n");
+    }
+    printf("valor: ");
+    wprintf(valor[0]);
 }
 
 void displayMenu(int menu)

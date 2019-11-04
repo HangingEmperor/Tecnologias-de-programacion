@@ -8,7 +8,7 @@
 int main() {
     setlocale(LC_ALL, "");
     wchar_t respuesta[100][20];
-    wchar_t valor[50][20];
+    wchar_t valor[100][20];
     wchar_t id[1][48];
 
     int resultado;
@@ -29,8 +29,6 @@ int main() {
         id[size][1] = respuesta[size][2];
 
         for (int i = 4; i < wcslen(respuesta[size]); i++) {
-            //printf("Se ingreso: %c \n", respuesta[size][i]);
-            //printf("palabraPoint: %i, letraPoint: %i\n", palabraPoint, letraPoint);
             if (iswalpha(respuesta[size][i]) != 0 || toascii(respuesta[size][i]) == 113 ||
                 toascii(respuesta[size][i]) == 81 || toascii(respuesta[size][i]) == 97 ||
                 toascii(respuesta[size][i]) == 105 || toascii(respuesta[size][i]) == 109 ||

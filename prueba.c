@@ -5,32 +5,27 @@
 #include <string.h>
 #include <ctype.h>
 
+void al(wchar_t x[100]);
+
 int main()
 {
     setlocale(LC_ALL, "");
     int result;
     int resultNumber;
 
-    wchar_t string1[] = L"áabcdefg";
-    wchar_t string2[] = L"abcdefg";
-    wchar_t string3[] = L"23023023";
-    wchar_t string4[] = L"59";
-    wchar_t string5[] = L"1";
-    wchar_t s[2];
-    wchar_t string[10];
+    wchar_t string1[100];
 
-    s[0] = string4[0];
-    s[1] = string5[0];
-    s[2] = string3[0];
-
-    int x;
-
-    x = iswdigit(string5[10]);
-    printf("%i", x);
+    string1[0] = 'l';
+    printf("%c", string1[0]);
+    al(string1);
+    printf("%c", string1[0]);
 
     //wprintf(s);
-
     // wscanf(L"%l[^\n]", string);
     // wprintf(string);
     // printf("%i", resultNumber);
+}
+
+void al(wchar_t x[100]) {
+    x[0] = 'x';
 }
