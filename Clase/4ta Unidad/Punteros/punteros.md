@@ -165,3 +165,135 @@ definiria a *vPtr* de vuelta a 3000, esto solo es el inicio del puntero.
 
 ## Arreglos y Punteros
 
+Existe una relacion estrecha entre los punteros y los arreglos.
+
+En C, un nombre de un arreglo es un indice a la direccion  de comienzo del arreglo. En esencia, el nombre de un arreglo es un puntero al arreglo.
+
+Ejemplo:
+
+``` c
+int a[10], x; 
+int *ap; 
+ap = &a[0]; 
+x = *ap; 
+*(ap + 1) = 100; 
+```
+
+Como se puede observar la setencia a[t] es identica a ap + t.
+
+Se debe tener cuidado ya que C no hace una revision de los limites del arreglo, por lo que se puede ir facilmente mas alla del arreglo en memoria y sobreescribir otras cosas.
+
+El nombre de un arreglo es un puntero al principio del arreglo, por lo tanto es razonable que se pueda asignar ese valor a otro puntero y que se acceda al arreglo utilizando aritmetica de punteros.
+
+Ejemplo:
+
+``` c
+#include <stdio.h>
+
+int main(){
+    int a[10] = {1,2,3,4,5,6,7,8,9,10};
+    int *ap;
+    ap = a;
+
+    printf("%d %d %d \n", *ap, *(ap + 1), *(ap + 2));
+    /* Lo mismo de otra forma... */
+    printf("%d %d %d \n", a[0], a[1], a[2]);
+}
+```
+
+C es mucho mas sutil en su relacion entre arreglos y apuntadores. Por ejemplo se puede teclear solamente: 
+
+``` c
+ap = a; en vez de ap = &a[0];
+y tambien
+*(a + i) en vez de a[i], esto es, &a[i] es equivalente con a + i;
+```
+
+por lo tanto, el direccionamiento de apuntadores se puede expresar como:
+a[i] que es equivalente a *(ap + i)
+
+Sin embargo los apuntadores y los arreglos son diferentes:
+
+* Un apuntador es una variable: Se puede hacer ap = a y ap++
+* Un arreglo NO ES una variable: Hacer a = ap y a++, ES ILEGAL.
+
+## Estructuras y punteros
+
+Ejemplo:
+
+``` c
+struct Dato {
+    int campo1;
+    int campo2;
+    char campo3[30];
+};
+
+struct Dato x;
+struct Dato *ptr;
+
+ptr = &x;
+ptr -> campo1 = 33;
+strcpy(ptr->campo3, "hola");
+```
+
+## Memoria Dinamica
+
+Las variables y vectores en C ocupan un tamaño prefijado, no pueden modificarse durante la ejecucion del programa.
+
+Por medio de punteros, podemos reservar o liberar memoria dinamicamente, es decir, segun se necesite. Para ello existen varias funciones estandares, de la biblioteca <stdlib.h>.
+
+La funcion malloc sirve para solicitar un bloque de memoria del tamaño suministrado como parametro.
+
+La funcion malloc, devuelve un puntero a la zona de memoria asignada y utiliza la siguiente sintaxis:
+
+``` c
+void* malloc (unsigned numero_de_bytes);
+```
+
+El tamaño se especifica en Bytes. Se garantiza que la zona de memoria concebida no esta ocupada por ninguna otra variable ni otra zona devuelta por malloc.
+
+Si malloc es incapaz de conceder el bloque, devuelve un puntero nulo.
+
+### Punteros void*
+
+La funcion malloc devuelve un puntero inespecifico, esto es, que no apunta a un topo de datos determinado. En C, estos punteros sin tipo se declaran como void*.
+
+### Operador sizeof()
+
+El problema de malloc es conocer cuantos bytes se quieren reservar. Si se quiere reservar una zona para diez enteros, habra que multiplicar diez por el tamaño de un entero.
+
+El tamaño en bytes de un elemento de tipo T se obtiene con la instruccion: sizeof(T); 
+
+### Funcion free()
+
+Cuando una zona de memoria reservada con amlloc ya no se necesita, puede ser liberada mediante la funcion free que tiene la siguiente sintaxis:
+void free(void* ptr); 
+
+ptr es un puntero de cualquier tipo que apunta a un area de memoria reservada previamente con malloc.
+
+Si ptr apunta a una zona de memoria indebida, los efectos pueden ser desastrosos.
+
+Ejemplo:
+
+``` c
+/* Ejemplo para uso de malloc: generador de una cadena */
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(){
+    int i, n;
+    char* cadena;
+    printf("Cuantos caracteres quieres en la cadena?");
+    scanf("%d", &i);
+    cadena = (char *)malloc(i+1);
+    if(cadena == NULL){
+        exit(1);
+    }
+
+    for(n=0; n<i; n++){
+        cadena[n]=rand()%26+'a';
+        cadena[i]
+    }
+}
+```
+

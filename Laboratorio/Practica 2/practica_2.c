@@ -1,16 +1,16 @@
 #include <locale.h>
 #include <stdio.h>
 #include <wchar.h>
+#include <ctype.h>
 #include <wctype.h>
 
-int esRespuesta(int size, wchar_t respuesta[100][48], wchar_t id[1][48], wchar_t palabras[50][12], int palabraPoint,
-                int letraPoint, int comas);
 void displayMenu(int menu);
 
 void main()
 {
     setlocale(LC_ALL, "");
     int menu, sizePreguntas = 0, sizeRespuestas = 0;
+    int sizePreguntaRespuesta = 0;
     int wasError = 0;
     int cantidadPreguntas[12];
     int posPregunta = 0;
@@ -21,6 +21,7 @@ void main()
     wchar_t temporal[50][12];
     wchar_t valor[100][20];
     wchar_t id[1][48];
+    int ide = 0;
 
     int resultado;
     int comas = 0;
@@ -136,11 +137,77 @@ void main()
                             while (getchar() != '\n')
                             {
                             };
-                            wchar_t aux[100][48];
                             printf("\n\n == Se selecciono la pregunta No. %i: == \n", posPregunta);
                             printf(" Ingresa una respuesta: ");
-                            scanf("%l[^\n]", aux);
-                            pass = esRespuesta(sizeRespuestas, aux);
+                            scanf("%l[^\n]", respuesta[sizeRespuestas]);
+
+                            if (toascii(respuesta[sizeRespuestas][0]) == 35 &&
+                                (iswdigit(respuesta[sizeRespuestas][1]) != 0 &&
+                                 iswdigit(respuesta[sizeRespuestas][2]) != 0) &&
+                                toascii(respuesta[sizeRespuestas][3]) == 40) {
+                                id[sizeRespuestas][0] = respuesta[sizeRespuestas][1];
+                                id[sizeRespuestas][1] = respuesta[sizeRespuestas][2];
+
+                                for (int i = 4; i < wcslen(respuesta[size]); i++) {
+                                    if (iswalpha(respuesta[sizeRespuestas][i]) != 0 ||
+                                        toascii(respuesta[sizeRespuestas][i]) == 113 ||
+                                        toascii(respuesta[sizeRespuestas][i]) == 81 ||
+                                        toascii(respuesta[sizeRespuestas][i]) == 97 ||
+                                        toascii(respuesta[sizeRespuestas][i]) == 105 ||
+                                        toascii(respuesta[sizeRespuestas][i]) == 109 ||
+                                        toascii(respuesta[sizeRespuestas][i]) == 115 ||
+                                        toascii(respuesta[sizeRespuestas][i]) == 122 ||
+                                        toascii(respuesta[sizeRespuestas][i]) == 34 ||
+                                        toascii(respuesta[sizeRespuestas][i]) == 32) {
+                                        palabras[palabraPoint][letraPoint] = respuesta[sizeRespuestas][i];
+                                        letraPoint++;
+                                    } else {
+                                        if (toascii(respuesta[sizeRespuestas][i]) == 44) {
+                                            comas++;
+                                            palabraPoint++;
+                                            letraPoint = 0;
+                                        } else {
+                                            if (toascii(respuesta[sizeRespuestas][i]) == 36) {
+                                                if (iswdigit(respuesta[sizeRespuestas][i + 1]) != 0) {
+                                                    if ((i + 3) == wcslen(respuesta[sizeRespuestas]) &&
+                                                        iswdigit(respuesta[sizeRespuestas][i + 2]) != 0) {
+                                                        valor[0][1] = respuesta[sizeRespuestas][i + 2];
+                                                    }
+                                                    valor[0][0] = respuesta[sizeRespuestas][i + 1];
+                                                    resultado = 1;
+                                                    i = wcslen(respuesta[sizeRespuestas]);
+                                                    break;
+                                                } else {
+                                                    resultado = 0;
+                                                }
+                                            } else {
+                                                resultado = 0;
+                                            }
+                                        }
+                                    }
+                                }
+                            } else {
+                                resultado = 0;
+                            }
+                            if (comas >= 4 && resultado) {
+                                printf("Realizado con exito\n");
+
+                                printf("id: ");
+                                wprintf(id[ide]);
+                                printf("\n");
+                                for (int i = 0; i < 5; i++) {
+                                    printf("Palabra: ");
+                                    wprintf(palabras[i]);
+                                    printf("\n");
+                                }
+                                printf("valor: ");
+                                wprintf(valor[ide]);
+                                printf("\n");
+                                sizeRespuestas++;
+                                ide++;
+                            } else {
+                                printf("Error en la oracion. \n");
+                            }
                         }
                         else
                         {
@@ -152,14 +219,12 @@ void main()
                 else
                 {
                     printf("\n El banco de preguntas esta vacio... \n");
-                    system("sleep 1");
                 }
                 break;
                 // Eliminar oracion
             case 3:
                 if (sizePreguntas > 0)
                 {
-                    system("clear");
                     printf(" --- 100 Ingenieros Dijeron ---> Editar Banco de Palabras ---> Eliminar preguntas --- \n");
                     printf(" === Total de preguntas: %i === \n\n", sizePreguntas);
 
@@ -188,7 +253,6 @@ void main()
                                 }
                                 sizePreguntas--;
                                 printf("\n Se ha eliminado correctamente... \n");
-                                system("sleep 1");
                             }
                         }
                     }
@@ -196,7 +260,6 @@ void main()
                 else
                 {
                     printf("No hay preguntas que eliminar... \n");
-                    system("sleep 1");
                 }
                 break;
             default:
@@ -206,7 +269,6 @@ void main()
             break;
             // Juego
         case 2:
-            system("clear");
             printf(" --- 100 Ingenieros Dijeron. [ _ _ _] \n");
             printf(" Meciona algo opuesto a: \n");
             printf("\n 1. ..............................    ....");
@@ -227,79 +289,6 @@ void main()
     } while (menu != 3);
 }
 
-int esRespuesta(int size, wchar_t respuesta[100][48], wchar_t id[1][48], wchar_t palabras[50][12], int palabraPoint,
-                int letraPoint, int comas)
-{
-    wchar_t aux[50][20];
-    wchar_t valor[50][20];
-    int resultado;
-    int comas = 0;
-    int esPalabra = 0;
-    int sizeAux = 0;
-
-    if (toascii(respuesta[size][0]) == 35 &&
-        (iswdigit(respuesta[size][1]) != 0 && iswdigit(respuesta[size][2]) != 0) &&
-        toascii(respuesta[size][3]) == 40)
-    {
-        id[size][0] = respuesta[size][1];
-        id[size][1] = respuesta[size][2];
-
-        for (int i = 4; i < wcslen(respuesta[size]); i++)
-        {
-            if (iswalpha(respuesta[size][i]) != 0 || toascii(respuesta[size][i]) == 113 ||
-                toascii(respuesta[size][i]) == 81 || toascii(respuesta[size][i]) == 97 ||
-                toascii(respuesta[size][i]) == 105 || toascii(respuesta[size][i]) == 109 ||
-                toascii(respuesta[size][i]) == 115 || toascii(respuesta[size][i]) == 122 ||
-                toascii(respuesta[size][i]) == 34 || toascii(respuesta[size][i]) == 32)
-            {
-                palabras[palabraPoint][letraPoint] = respuesta[size][i];
-                letraPoint++;
-            } else {
-                if (toascii(respuesta[size][i]) == 44)
-                {
-                    comas++;
-                    palabraPoint++;
-                    letraPoint = 0;
-                } else {
-                    if (toascii(respuesta[size][i]) == 36) {
-                        if (iswdigit(respuesta[size][i + 1]) != 0) {
-                            if ((i + 3) == wcslen(respuesta[size]) && iswdigit(respuesta[size][i + 2]) != 0) {
-                                valor[0][1] = respuesta[size][i + 2];
-                            }
-                            valor[0][0] = respuesta[size][i + 1];
-                            resultado = 1;
-                            i = wcslen(respuesta[size]);
-                            break;
-                        } else {
-                            resultado = 0;
-                        }
-                    } else {
-                        resultado = 0;
-                    }
-                }
-            }
-        }
-    } else {
-        resultado = 0;
-    }
-    if (comas >= 4 && resultado) {
-        printf("Exito\n");
-    } else {
-        printf("Fracaso\n");
-    }
-
-    printf("id: ");
-    wprintf(id[0]);
-    printf("\n");
-    for (int i = 0; i < 5; i++) {
-        printf("Palabra: ");
-        wprintf(palabras[i]);
-        printf("\n");
-    }
-    printf("valor: ");
-    wprintf(valor[0]);
-}
-
 void displayMenu(int menu)
 {
     switch (menu)
@@ -312,7 +301,6 @@ void displayMenu(int menu)
         printf("\n 3 .- Salir \n\n ---> Opcion: ");
         break;
     case 1:
-        system("clear");
         printf(" --- 100 Ingenieros Dijeron ---> Editar Banco de Palabras ---");
         printf("\n 1 .- Llenar Preguntas");
         printf("\n 2 .- Llenar Respuestas");
