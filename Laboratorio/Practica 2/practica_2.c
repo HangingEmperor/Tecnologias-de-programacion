@@ -6,6 +6,8 @@
 
 void displayMenu(int menu);
 
+void pause();
+
 void main()
 {
     setlocale(LC_ALL, "");
@@ -28,6 +30,7 @@ void main()
     int size = 0;
 
     wchar_t palabras[20][20];
+    wchar_t colectorPalabras[20][20];
     int palabraPoint = 0;
     int letraPoint = 0;
 
@@ -40,9 +43,7 @@ void main()
     {
         displayMenu(0);
         scanf("%i", &menu);
-        while (getchar() != '\n')
-        {
-        };
+        while (getchar() != '\n') {};
 
         switch (menu)
         {
@@ -58,16 +59,9 @@ void main()
             case 1:
                 do
                 {
-                    while (getchar() != '\n')
-                    {
-                    };
+                    while (getchar() != '\n') {};
                     pass = 0;
 
-                    if (wasError)
-                    {
-                        printf(" Se ingreso un caracter invalido... \n\n");
-                        printf("error: %i", example);
-                    }
                     printf(" --- 100 Ingenieros Dijeron ---> Editar Banco de Palabras ---> Llenar preguntas ---");
                     if (sizePreguntas < 12)
                     {
@@ -116,9 +110,7 @@ void main()
                     do
                     {
                         pass = 0;
-                        while (getchar() != '\n')
-                        {
-                        };
+                        while (getchar() != '\n') {};
 
                         printf(" --- 100 Ingenieros Dijeron ---> Editar Banco de Palabras ---> Llenar preguntas --- \n");
                         printf(" === Preguntas disponibles: %i === \n\n", sizePreguntas);
@@ -134,13 +126,12 @@ void main()
 
                         if (posPregunta > 0 && posPregunta <= sizePreguntas)
                         {
-                            while (getchar() != '\n')
-                            {
-                            };
+                            while (getchar() != '\n') {};
                             printf("\n\n == Se selecciono la pregunta No. %i: == \n", posPregunta);
                             printf(" Ingresa una respuesta: ");
                             scanf("%l[^\n]", respuesta[sizeRespuestas]);
 
+                            palabraPoint = 0;
                             if (toascii(respuesta[sizeRespuestas][0]) == 35 &&
                                 (iswdigit(respuesta[sizeRespuestas][1]) != 0 &&
                                  iswdigit(respuesta[sizeRespuestas][2]) != 0) &&
@@ -165,6 +156,7 @@ void main()
                                         if (toascii(respuesta[sizeRespuestas][i]) == 44) {
                                             comas++;
                                             palabraPoint++;
+                                            int sizeColector = 0;
                                             letraPoint = 0;
                                         } else {
                                             if (toascii(respuesta[sizeRespuestas][i]) == 36) {
@@ -189,13 +181,13 @@ void main()
                             } else {
                                 resultado = 0;
                             }
-                            if (comas >= 4 && resultado) {
+                            if (comas >= 1 && resultado) {
                                 printf("Realizado con exito\n");
 
                                 printf("id: ");
                                 wprintf(id[ide]);
                                 printf("\n");
-                                for (int i = 0; i < 5; i++) {
+                                for (int i = 0; i < comas + 1; i++) {
                                     printf("Palabra: ");
                                     wprintf(palabras[i]);
                                     printf("\n");
@@ -313,4 +305,10 @@ void displayMenu(int menu)
     default:
         break;
     }
+}
+
+void pause() {
+    printf("Presiona ENTER para continuar... ");
+    while (getchar() != '\n') {};
+    while (getchar() != '\n') {};
 }

@@ -1,6 +1,7 @@
 /* Lo que se mostrara en pantalla */
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 //generarTablero(char tablero[][], int filas, int columna);
 void mostrarTablero(char tablero[12][12], int filas, int columnas);
@@ -20,15 +21,36 @@ int main(int argc, char *argv[]) {
 
             printf("Bienvenido %s a Battleship\n", argv[2]);
 
+            int total;
             int buquesCarga;
             int buquesBatalla;
             int buquesDestructores;
+            buquesCarga = (int) argv[1] * .2;
+            buquesBatalla = (int) argv[1] * .3;
+            buquesDestructores = (int) argv[1] * .4;
+
+            if ((buquesCarga + buquesBatalla + buquesDestructores) < argv[1])
+                buquesDestructores++;
+            else if ((buquesCarga + buquesBatalla + buquesDestructores) > argv[1])
+                buquesDestructores--;
+            total = buquesCarga + buquesBatalla + buquesDestructores;
 
             char tableroJugador[12][12];
             char tableroEnemigo[12][12];
+            1
+
+            int barcosTipos[2][2] = {};
 
             reiniciarTablero(tableroJugador);
             mostrarTablero(tableroJugador, 12, 12);
+
+            printf("Jugador: %s", argv[2]);
+            printf("Coordenadas Falladas: ");
+            printf("Coodernadas Atinadas: ");
+            printf("Oportunidades restantes: ");
+            printf("Barcos hundidos: ");
+            printf("Barcos restantes: ");
+            printf("COORDENADA: ");
         } else {
             printf("Se ingreso un numero de barcos inferior a 5 o superior a 10. \n");
             printf("Ingrese [nombre programa] [numero de barcos {MIN: 5 - MAX: 10}] [nombre]\n");
