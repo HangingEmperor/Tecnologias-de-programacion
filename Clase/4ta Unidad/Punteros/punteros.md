@@ -283,17 +283,136 @@ Ejemplo:
 int main(){
     int i, n;
     char* cadena;
+
     printf("Cuantos caracteres quieres en la cadena?");
     scanf("%d", &i);
     cadena = (char *)malloc(i+1);
+
     if(cadena == NULL){
         exit(1);
     }
 
-    for(n=0; n<i; n++){
-        cadena[n]=rand()%26+'a';
-        cadena[i]
+    for(n=0; n < i; n++){
+        cadena[n] = rand() % 26 + 'a';
+        cadena[i] = '\0';
+
+        printf("La cadena generada aleatoriamente es: %s\n", cadena);
+        free(cadena);
     }
+
+    return 0;
 }
+```
+
+## Memoria Dinamica (Listas Enlazadas)
+
+Una lista enlazada esta compuesta por un conjunto de elementos, cada uno de estos elementos recibe el nombre de NODO.
+
+Cada NODO esta compuesto por al menos dos elementos:
+
+* Info: Campo que contiene la informacion.
+* Apuntador: puntero al siguiente elemento de la lista o NULL en el caso de ser el ultimo.
+
+En C cada elemento llamado NODO esta definido por una estructura o registro.
+
+Por ejemplo, para definir una lista, donde cada uno de sus NODOS estara compuesto por:
+
+* Un elemento llamado info de tipo entero
+* Un puntero al proximo elemento
+
+Definimos el NODO de la siguiente manera:
+
+``` c
+struct Nodo{
+    int info;
+    struct Nodo* siguiente;
+};
+
+int main() {
+    struct Nodo *lista = NULL;
+
+    lista = (struct Nodo*)malloc(sizeof(struct Nodo));
+    lista -> info = 8;
+    lista -> siguiente = NULL;
+
+    return 0;
+}
+```
+
+Ejemplo:
+
+``` c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct nodo{
+    char nombre[10];
+    int edad;
+    float saldo;
+    struct nodo* siguiente;
+};
+
+int main(){
+    char name[10];
+    int age;
+    float balance;
+    struct nodo *nuevo;
+
+    printf("\nIntroduce el nombre: ");
+    scanf("%s", name);
+    printf("\nIntroduce la edad: ");
+    scanf("%d", &age);
+    printf("\nIntroduce el saldo: ");
+    scanf("%f", &balance);
+
+    nuevo = (struct nodo*) malloc(sizeof(struct nodo));
+    nuevo -> edad = age;
+    nuevo -> saldo = balance;
+    strcpy(nuevo -> nombre, name);
+
+    printf("\n El nombre almacenado es: %s", nuevo -> nombre);
+}
+```
+
+### Como insertar correctamente un valor
+
+``` c
+int main() {
+    struct Nodo *lista = NULL, *aux;
+
+    lista = (struct Nodo *)malloc(sizeof(struct nodo));
+    lista -> info = 8;
+    lista -> siguiente = NULL;
+    
+    aux = lista;
+    lista = (struct Nodo *)malloc(sizeof(struct Nodo));
+    lista -> info = 3;
+    lista -> siguiente = aux;
+}
+```
+
+Ejemplo: 
+
+``` c
+nuevo -> siguiente = nuevo2;
+nuevo -> siguiente = NULL;
+```
+
+Si queremos agregar un NODO al final de la lista, el algoritmo seria:
+
+* buscar el ultimo elemento de la lista, es decir, recorrer la lista desde el inicio hasta enconrar el puntero cuyo siguiente sea igual a NULL y guardar el puntero en la variable aux.
+* reservar memoria para el nuevo elemento y guardar su puntero en nuevo.
+* hacer que el campo sigueinte del ultimo elemento encontrado en el paso 1 apunte el nuevo elemento: aux -> siguiente = nuevo; 
+* Actualizar los campos del nodo nuevo y poner el atributo siguiente en NULL o fin de la lista.
+
+``` c
+struct Nodo *lista = NULL, *aux, *nuevo; 
+
+for(aux=lista; aux->siguiente!=NULL; aux=aux->siguiente); 
+nuevo=(struct Nodo *)malloc(sizeof(struct Nodo)); 
+nuevo ->info = 50; 
+nuevo->siguiente=NULL; 
+aux->siguiente=nuevo; 
 ```
 

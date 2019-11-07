@@ -53,6 +53,5 @@ int main() {
         printf("Correo: %c", ptr->correo);
     }
 
-    //strcpy(ptr->nombre, "hola");
     return 0;
 }
