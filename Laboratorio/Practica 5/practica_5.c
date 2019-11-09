@@ -62,6 +62,7 @@ int main() {
                 printf("3.- Circulo\n");
                 printf("4.- Salir\n");
                 scanf("%i", &op);
+                while (getchar() != '\n') {};
 
                 int base;
                 int altura;
@@ -72,17 +73,17 @@ int main() {
                         dibujar[size].seleccionado = 0;
                         dibujar[size].tipoFigura = TRIANGULO_TYPE;
                         printf("Coordenada P1 X: ");
-                        scanf("%i", dibujar[size].dibujo.triangulo.p1.x);
+                        scanf("%i", &dibujar[size].dibujo.triangulo.p1.x);
                         printf("Coordenada P1 Y: ");
-                        scanf("%i", dibujar[size].dibujo.triangulo.p1.y);
+                        scanf("%i", &dibujar[size].dibujo.triangulo.p1.y);
                         printf("Coordenada P2 X: ");
-                        scanf("%i", dibujar[size].dibujo.triangulo.p2.x);
+                        scanf("%i", &dibujar[size].dibujo.triangulo.p2.x);
                         printf("Coordenada P2 Y: ");
-                        scanf("%i", dibujar[size].dibujo.triangulo.p2.y);
+                        scanf("%i", &dibujar[size].dibujo.triangulo.p2.y);
                         printf("Coordenada P3 X: ");
-                        scanf("%i", dibujar[size].dibujo.triangulo.p3.x);
+                        scanf("%i", &dibujar[size].dibujo.triangulo.p3.x);
                         printf("Coordenada P3 Y: ");
-                        scanf("%i", dibujar[size].dibujo.triangulo.p3.y);
+                        scanf("%i", &dibujar[size].dibujo.triangulo.p3.y);
 
                         if (dibujar[size].dibujo.triangulo.p1.x >= 0) {
                             base = dibujar[size].dibujo.triangulo.p3.x - dibujar[size].dibujo.triangulo.p1.x;
@@ -95,19 +96,20 @@ int main() {
                             altura = abs(dibujar[size].dibujo.triangulo.p1.y) + dibujar[size].dibujo.triangulo.p3.y;
                         }
                         area = (base * altura) / 2;
+                        printf("Area: %f", area);
                         dibujar[size].area = area;
                         break;
                     case 2:
                         dibujar[size].seleccionado = 0;
                         dibujar[size].tipoFigura = CUADRADO_TYPE;
                         printf("Coordenada P1 X: ");
-                        scanf("%i", dibujar[size].dibujo.cuadrado.p1.x);
+                        scanf("%i", &dibujar[size].dibujo.cuadrado.p1.x);
                         printf("Coordenada P1 Y: ");
-                        scanf("%i", dibujar[size].dibujo.cuadrado.p1.y);
+                        scanf("%i", &dibujar[size].dibujo.cuadrado.p1.y);
                         printf("Coordenada P2 X: ");
-                        scanf("%i", dibujar[size].dibujo.cuadrado.p2.x);
+                        scanf("%i", &dibujar[size].dibujo.cuadrado.p2.x);
                         printf("Coordenada P2 Y: ");
-                        scanf("%i", dibujar[size].dibujo.cuadrado.p2.y);
+                        scanf("%i", &dibujar[size].dibujo.cuadrado.p2.y);
 
                         if (dibujar[size].dibujo.cuadrado.p1.x >= 0) {
                             base = dibujar[size].dibujo.cuadrado.p2.x - dibujar[size].dibujo.cuadrado.p1.x;
@@ -120,6 +122,7 @@ int main() {
                             altura = dibujar[size].dibujo.cuadrado.p1.y + abs(dibujar[size].dibujo.cuadrado.p2.y);
                         }
                         area = base * altura;
+                        printf("\nArea: %f", area);
                         dibujar[size].area = area;
                         break;
                     case 3:
@@ -131,11 +134,11 @@ int main() {
                 }
 
                 if (op > 0 && op < 4) {
-                    printf("¿Que color desea en la figura?: ");
-                    printf("1.- Rojo");
-                    printf("2.- Azul");
-                    printf("3.- Amarillo");
-                    printf("4.- Verde");
+                    printf("\n¿Que color desea en la figura?: \n");
+                    printf("1.- Rojo\n");
+                    printf("2.- Azul\n");
+                    printf("3.- Amarillo\n");
+                    printf("4.- Verde\n");
                     scanf("%i", &op);
                     switch (op) {
                         case 1:
@@ -166,27 +169,29 @@ int main() {
                 colección mostrando para cada elemento el tipo de Figura,Coordenadas
                 y área como se muestra a continuación*/
                 for (int i = 0; i < size; i++) {
-                    if (dibujar[size].tipoFigura == TRIANGULO_TYPE) {
+                    printf("\n---------------------------------------------------\n");
+                    if (dibujar[i].tipoFigura == TRIANGULO_TYPE) {
                         printf("FIGURA: Triangulo. \n");
                         printf("Coordenadas: X1 = %i, Y1 = %i; X2 = %i, Y2 = %i; X3 = %i, Y3 = %i\n",
-                               dibujar[size].dibujo.triangulo.p1.x, dibujar[size].dibujo.triangulo.p1.y,
-                               dibujar[size].dibujo.triangulo.p2.x, dibujar[size].dibujo.triangulo.p2.y,
-                               dibujar[size].dibujo.triangulo.p3.x, dibujar[size].dibujo.triangulo.p3.y);
-                        printf("Area: %f \n", dibujar[size].area);
-                        printf("Color: %s \n", dibujar[size].color);
-                        printf("Seleccionado: %i \n", dibujar[size].seleccionado);
+                               dibujar[i].dibujo.triangulo.p1.x, dibujar[i].dibujo.triangulo.p1.y,
+                               dibujar[i].dibujo.triangulo.p2.x, dibujar[i].dibujo.triangulo.p2.y,
+                               dibujar[i].dibujo.triangulo.p3.x, dibujar[i].dibujo.triangulo.p3.y);
+                        printf("Area: %f \n", dibujar[i].area);
+                        printf("Color: %s \n", dibujar[i].color);
+                        printf("Seleccionado: %i \n", dibujar[i].seleccionado);
                     }
-                    if (dibujar[size].tipoFigura == CUADRADO_TYPE) {
+                    if (dibujar[i].tipoFigura == CUADRADO_TYPE) {
                         printf("FIGURA: Cuadrado. \n");
                         printf("Coordenadas: X1 = %i, Y1 = %i; X2 = %i, Y2 = %i\n",
-                               dibujar[size].dibujo.cuadrado.p1.x, dibujar[size].dibujo.cuadrado.p1.y,
-                               dibujar[size].dibujo.cuadrado.p2.x, dibujar[size].dibujo.cuadrado.p2.y);
-                        printf("Area: %f \n", dibujar[size].area);
-                        printf("Color: %s \n", dibujar[size].color);
-                        printf("Seleccionado: %i \n", dibujar[size].seleccionado);
+                               dibujar[i].dibujo.cuadrado.p1.x, dibujar[i].dibujo.cuadrado.p1.y,
+                               dibujar[i].dibujo.cuadrado.p2.x, dibujar[i].dibujo.cuadrado.p2.y);
+                        printf("Area: %f \n", dibujar[i].area);
+                        printf("Color: %s \n", dibujar[i].color);
+                        printf("Seleccionado: %i \n", dibujar[i].seleccionado);
                     }
-                    if (dibujar[size].tipoFigura == CIRCULO_TYPE) {
+                    if (dibujar[i].tipoFigura == CIRCULO_TYPE) {
                     }
+                    printf("---------------------------------------------------\n");
                 }
 
                 break;

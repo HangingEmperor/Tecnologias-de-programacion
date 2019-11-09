@@ -63,6 +63,7 @@
       <workItem from="1572828987629" duration="146000" />
       <workItem from="1572999176458" duration="165000" />
       <workItem from="1573097002333" duration="160000" />
+      <workItem from="1573159863798" duration="208000" />
     </task>
     <task id="LOCAL-00001" summary="Mas informacion y practicas 4 y 5 agregadas.">
       <created>1572559321704</created>
@@ -113,7 +114,14 @@
       <option name="project" value="LOCAL" />
       <updated>1573097114536</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Avances en Practicas:&#10;- Practica 2&#10;- Practica 3&#10;- Practica 5">
+      <created>1573159992017</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1573159992017</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -135,7 +143,8 @@
     <MESSAGE value="Avances en la practica 2 y 5." />
     <MESSAGE value="Avances en la practica 2." />
     <MESSAGE value="Temas vistos en clase agregados." />
-    <option name="LAST_COMMIT_MESSAGE" value="Temas vistos en clase agregados." />
+    <MESSAGE value="Avances en Practicas:&#10;- Practica 2&#10;- Practica 3&#10;- Practica 5" />
+    <option name="LAST_COMMIT_MESSAGE" value="Avances en Practicas:&#10;- Practica 2&#10;- Practica 3&#10;- Practica 5" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
