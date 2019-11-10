@@ -64,6 +64,7 @@
       <workItem from="1572999176458" duration="165000" />
       <workItem from="1573097002333" duration="160000" />
       <workItem from="1573159863798" duration="208000" />
+      <workItem from="1573266680084" duration="116000" />
     </task>
     <task id="LOCAL-00001" summary="Mas informacion y practicas 4 y 5 agregadas.">
       <created>1572559321704</created>
@@ -121,7 +122,14 @@
       <option name="project" value="LOCAL" />
       <updated>1573159992017</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Avances en Practicas:&#10;- Practica 2&#10;- Practica 3&#10;- Practica 5">
+      <created>1573266780201</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1573266780201</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

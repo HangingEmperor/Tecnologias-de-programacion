@@ -15,42 +15,57 @@ void generarCoordenadas(char tablero[12][12], int filas, int columnas,
 void mostrarHUD(char nombre[], char coordFalladas, char coordAtinadasm,
                 int barcosHundidos, int barcosRestantes);
 
+void dibujarBarcos(char tablero[12][12], int filas, int columnas, int barcosTipos[12],
+                   char coordenadasInicio[12][12], char orientacion[12], char coordenadasFinal[12][12]);
+
 int main(int argc, char *argv[]) {
     if (argc == 3) {
-        if (argv[1][0] >= '5' && argv[1][0] <= '9') {
-
+        if (argv[1][0] >= '5' && argv[1][0] <= '9' || ((int) argv[0][1] - 48) == 10) {
             printf("Bienvenido %s a Battleship\n", argv[2]);
 
             int total;
             int buquesCarga;
             int buquesBatalla;
             int buquesDestructores;
-            buquesCarga = (int) argv[1] * .2;
-            buquesBatalla = (int) argv[1] * .3;
-            buquesDestructores = (int) argv[1] * .4;
+            int movimientosRestantes = 0;
+            int barcos = (int) argv[1][0] - 48;
 
-            if ((buquesCarga + buquesBatalla + buquesDestructores) < argv[1])
-                buquesDestructores++;
-            else if ((buquesCarga + buquesBatalla + buquesDestructores) > argv[1])
-                buquesDestructores--;
-            total = buquesCarga + buquesBatalla + buquesDestructores;
+            if (barcos == 1 && ((int) argv[1][1] - 48) == 0)
+                barcos = 10;
+
+            buquesCarga = ceil(barcos * .2);
+            buquesBatalla = ceil(barcos * .3);
+            buquesDestructores = ceil(barcos * .4);
+
+            if ((buquesCarga + buquesBatalla + buquesDestructores) < barcos)
+                buquesBatalla++;
+            else if ((buquesCarga + buquesBatalla + buquesDestructores) > barcos)
+                buquesBatalla--;
+
+            movimientosRestantes =
+                    (((buquesDestructores * 3) + (buquesBatalla * 4) + (buquesCarga * 5)) * (barcos)) / 2;
 
             char tableroJugador[12][12];
             char tableroEnemigo[12][12];
-            1
 
-            int barcosTipos[2][2] = {};
+            int barcosTipos[2][2];
 
             reiniciarTablero(tableroJugador);
             mostrarTablero(tableroJugador, 12, 12);
 
-            printf("Jugador: %s", argv[2]);
-            printf("Coordenadas Falladas: ");
-            printf("Coodernadas Atinadas: ");
-            printf("Oportunidades restantes: ");
-            printf("Barcos hundidos: ");
-            printf("Barcos restantes: ");
+            char coordenada[2];
+            printf("Jugador: %s \n", argv[2]);
+            printf("Coordenadas Falladas: \n");
+            printf("Coodernadas Atinadas: \n");
+            printf("Oportunidades restantes: %i\n", movimientosRestantes);
+            printf("Barcos hundidos: \n");
+            printf("Barcos restantes: \n");
             printf("COORDENADA: ");
+            scanf("%c", coordenada);
+
+            if (coordenada < 0) {
+                mostrarTablero(tableroEnemigo, 12, 12);
+            }
         } else {
             printf("Se ingreso un numero de barcos inferior a 5 o superior a 10. \n");
             printf("Ingrese [nombre programa] [numero de barcos {MIN: 5 - MAX: 10}] [nombre]\n");
