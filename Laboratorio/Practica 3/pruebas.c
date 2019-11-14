@@ -1,23 +1,20 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <time.h>
 
 int main() {
-    int x, y, z, total, cantidad = 7;
-    x = ceil(cantidad * .2);
-    y = ceil(cantidad * .3);
-    z = ceil(cantidad * .4);
-
-    total = x + y + z;
-    if (total < cantidad) {
-        z++;
-    } else if (total > cantidad) {
-        z--;
-    }
-    total = x + y + z;
+    //srand (getpid());
+    srand(time(NULL));
+    int numero, x, y, z;
+    char xd[10];
+    numero = rand() % (2) + 1;
+    x = rand() % (2) + 1;
+    y = rand() % (2) + 1;
+    z = rand() % (2) + 1;
 
 
-    printf("%i", total);
+    printf("%i, %i, %i, %i", numero, x, y, z);
 
     return 0;
 }
